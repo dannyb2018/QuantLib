@@ -763,6 +763,7 @@
     <ClCompile Include="rounding.cpp" />
     <ClCompile Include="sampledcurve.cpp" />
     <ClCompile Include="schedule.cpp" />
+    <ClCompile Include="settings.cpp" />
     <ClCompile Include="shortratemodels.cpp" />
     <ClCompile Include="sofrfutures.cpp" />
     <ClCompile Include="solvers.cpp" />
@@ -783,12 +784,14 @@
     <ClCompile Include="transformedgrid.cpp" />
     <ClCompile Include="twoassetbarrieroption.cpp" />
     <ClCompile Include="twoassetcorrelationoption.cpp" />
+    <ClCompile Include="ultimateforwardtermstructure.cpp" />
     <ClCompile Include="utilities.cpp" />
     <ClCompile Include="variancegamma.cpp" />
     <ClCompile Include="varianceoption.cpp" />
     <ClCompile Include="varianceswaps.cpp" />
     <ClCompile Include="volatilitymodels.cpp" />
     <ClCompile Include="vpp.cpp" />
+    <ClCompile Include="crosscurrencyratehelpers.cpp" />
     <ClCompile Include="zabr.cpp" />
     <ClCompile Include="quantlibtestsuite.cpp" />
   </ItemGroup>
@@ -921,6 +924,7 @@
     <ClInclude Include="rounding.hpp" />
     <ClInclude Include="sampledcurve.hpp" />
     <ClInclude Include="schedule.hpp" />
+    <ClInclude Include="settings.hpp" />
     <ClInclude Include="shortratemodels.hpp" />
     <ClInclude Include="sofrfutures.hpp" />
     <ClInclude Include="solvers.hpp" />
@@ -943,12 +947,14 @@
     <ClInclude Include="transformedgrid.hpp" />
     <ClInclude Include="twoassetbarrieroption.hpp" />
     <ClInclude Include="twoassetcorrelationoption.hpp" />
+    <ClInclude Include="ultimateforwardtermstructure.hpp" />
     <ClInclude Include="utilities.hpp" />
     <ClInclude Include="variancegamma.hpp" />
     <ClInclude Include="varianceoption.hpp" />
     <ClInclude Include="varianceswaps.hpp" />
     <ClInclude Include="volatilitymodels.hpp" />
     <ClInclude Include="vpp.hpp" />
+    <ClInclude Include="crosscurrencyratehelpers.hpp" />
     <ClInclude Include="zabr.hpp" />
   </ItemGroup>
   <ItemGroup>

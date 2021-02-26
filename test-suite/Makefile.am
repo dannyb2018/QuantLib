@@ -38,6 +38,7 @@ QL_TEST_SRCS = \
 	covariance.cpp \
 	creditdefaultswap.cpp \
 	creditriskplus.cpp \
+	crosscurrencyratehelpers.cpp \
 	curvestates.cpp \
 	dates.cpp \
 	daycounters.cpp \
@@ -128,6 +129,7 @@ QL_TEST_SRCS = \
 	rounding.cpp \
 	sampledcurve.cpp \
 	schedule.cpp \
+	settings.cpp \
 	shortratemodels.cpp \
 	sofrfutures.cpp \
 	solvers.cpp \
@@ -148,6 +150,7 @@ QL_TEST_SRCS = \
 	tracing.cpp \
 	twoassetbarrieroption.cpp \
 	twoassetcorrelationoption.cpp \
+	ultimateforwardtermstructure.cpp \
 	utilities.cpp \
 	variancegamma.cpp \
 	varianceoption.cpp \
@@ -195,6 +198,7 @@ QL_TEST_HDRS = \
 	covariance.hpp \
 	creditdefaultswap.hpp \
 	creditriskplus.hpp \
+	crosscurrencyratehelpers.hpp \
 	curvestates.hpp \
 	dates.hpp \
 	daycounters.hpp \
@@ -285,6 +289,7 @@ QL_TEST_HDRS = \
 	rounding.hpp \
 	sampledcurve.hpp \
 	schedule.hpp \
+	settings.hpp \
 	shortratemodels.hpp \
 	sofrfutures.hpp \
 	solvers.hpp \
@@ -306,6 +311,7 @@ QL_TEST_HDRS = \
 	tracing.hpp \
 	twoassetbarrieroption.hpp \
 	twoassetcorrelationoption.hpp \
+	ultimateforwardtermstructure.hpp \
 	utilities.hpp \
 	variancegamma.hpp \
 	varianceoption.hpp \

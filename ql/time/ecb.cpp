@@ -184,12 +184,11 @@ namespace QuantLib {
                   Settings::instance().evaluationDate() :
                   date);
 
-        std::set<Date>::const_iterator i =
-            std::upper_bound(knownDates().begin(), knownDates().end(), d);
+        auto i = std::upper_bound(knownDates().begin(), knownDates().end(), d);
 
         QL_REQUIRE(i!=knownDates().end(),
                    "ECB dates after " << *(--knownDates().end()) << " are unknown");
-        return Date(*i);
+        return *i;
     }
 
     std::vector<Date> ECB::nextDates(const Date& date) {
@@ -197,8 +196,7 @@ namespace QuantLib {
                   Settings::instance().evaluationDate() :
                   date);
 
-        std::set<Date>::const_iterator i =
-            std::upper_bound(knownDates().begin(), knownDates().end(), d);
+        auto i = std::upper_bound(knownDates().begin(), knownDates().end(), d);
 
         QL_REQUIRE(i!=knownDates().end(),
                    "ECB dates after " << *knownDates().end() << " are unknown");

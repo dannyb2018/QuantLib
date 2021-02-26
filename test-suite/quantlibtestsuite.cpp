@@ -99,6 +99,7 @@
 #include "covariance.hpp"
 #include "creditdefaultswap.hpp"
 #include "creditriskplus.hpp"
+#include "crosscurrencyratehelpers.hpp"
 #include "curvestates.hpp"
 #include "dates.hpp"
 #include "daycounters.hpp"
@@ -189,6 +190,7 @@
 #include "rounding.hpp"
 #include "sampledcurve.hpp"
 #include "schedule.hpp"
+#include "settings.hpp"
 #include "shortratemodels.hpp"
 #include "sofrfutures.hpp"
 #include "solvers.hpp"
@@ -209,6 +211,7 @@
 #include "transformedgrid.hpp"
 #include "twoassetbarrieroption.hpp"
 #include "twoassetcorrelationoption.hpp"
+#include "ultimateforwardtermstructure.hpp"
 #include "variancegamma.hpp"
 #include "varianceoption.hpp"
 #include "varianceswaps.hpp"
@@ -364,7 +367,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     BOOST_TEST_MESSAGE(rule);
     BOOST_TEST_MESSAGE(header.str());
     BOOST_TEST_MESSAGE(rule);
-    test_suite* test = BOOST_TEST_SUITE("QuantLib test suite");
+    auto* test = BOOST_TEST_SUITE("QuantLib test suite");
 
     test->add(QUANTLIB_TEST_CASE(startTimer));
 
@@ -392,6 +395,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(CovarianceTest::suite());
     test->add(CPISwapTest::suite());
     test->add(CreditDefaultSwapTest::suite());
+    test->add(CrossCurrencyRateHelpersTest::suite());
     test->add(CurveStatesTest::suite());
     test->add(DateTest::suite(speed));
     test->add(DayCounterTest::suite());
@@ -463,6 +467,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(RoundingTest::suite());
     test->add(SampledCurveTest::suite());
     test->add(ScheduleTest::suite());
+    test->add(SettingsTest::suite());
     test->add(ShortRateModelTest::suite(speed)); // fails with QL_USE_INDEXED_COUPON
     test->add(Solver1DTest::suite());
     test->add(StatisticsTest::suite());
@@ -477,6 +482,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(TqrEigenDecompositionTest::suite());
     test->add(TracingTest::suite());
     test->add(TransformedGridTest::suite());
+    test->add(UltimateForwardTermStructureTest::suite());
     test->add(VarianceSwapTest::suite());
     test->add(VolatilityModelsTest::suite());
 
