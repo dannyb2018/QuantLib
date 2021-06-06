@@ -165,7 +165,7 @@ void HestonSLVModelTest::testBlackScholesFokkerPlanckFwdEquation() {
 
     SavedSettings backup;
 
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate = Date(28, Dec, 2012);
     Settings::instance().evaluationDate() = todaysDate;
 
@@ -694,7 +694,7 @@ namespace {
 
         SavedSettings backup;
 
-        const DayCounter dc = ActualActual();
+        const DayCounter dc = ActualActual(ActualActual::ISDA);
         const Date todaysDate = Date(28, Dec, 2014);
         Settings::instance().evaluationDate() = todaysDate;
 
@@ -1065,7 +1065,7 @@ void HestonSLVModelTest::testHestonFokkerPlanckFwdEquationLogLVLeverage() {
 
     SavedSettings backup;
 
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate = Date(28, Dec, 2012);
     Settings::instance().evaluationDate() = todaysDate;
 
@@ -1236,7 +1236,7 @@ void HestonSLVModelTest::testBlackScholesFokkerPlanckFwdEquationLocalVol() {
 
     SavedSettings backup;
 
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate(5, July, 2014);
     Settings::instance().evaluationDate() = todaysDate;
 
@@ -1627,7 +1627,7 @@ void HestonSLVModelTest::testBarrierPricingViaHestonLocalVol() {
     BOOST_TEST_MESSAGE("Testing calibration via vanilla options...");
 
     SavedSettings backup;
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate(5, Nov, 2015);
     Settings::instance().evaluationDate() = todaysDate;
 
@@ -1728,7 +1728,7 @@ void HestonSLVModelTest::testBarrierPricingMixedModels() {
     BOOST_TEST_MESSAGE("Testing Barrier pricing with mixed models...");
 
     SavedSettings backup;
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate(5, Nov, 2015);
     const Date exerciseDate = todaysDate + Period(1, Years);
     Settings::instance().evaluationDate() = todaysDate;
@@ -1855,7 +1855,7 @@ void HestonSLVModelTest::testMonteCarloVsFdmPricing() {
         "Heston SLV models...");
 
     SavedSettings backup;
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate(5, Dec, 2015);
     const Date exerciseDate = todaysDate + Period(1, Years);
     Settings::instance().evaluationDate() = todaysDate;
@@ -1961,7 +1961,7 @@ void HestonSLVModelTest::testMonteCarloCalibration() {
 
     SavedSettings backup;
 
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate(5, Jan, 2016);
     const Date maturityDate = todaysDate + Period(1, Years);
     Settings::instance().evaluationDate() = todaysDate;
@@ -2084,7 +2084,7 @@ void HestonSLVModelTest::testForwardSkewSLV() {
 
     SavedSettings backup;
 
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate(5, Jan, 2017);
     const Date maturityDate = todaysDate + Period(2, Years);
     Settings::instance().evaluationDate() = todaysDate;
@@ -2343,7 +2343,7 @@ void HestonSLVModelTest::testMoustacheGraph() {
      Foreign Exchange Option Pricing: A Practitioner’s Guide
     */
 
-    const DayCounter dc = ActualActual();
+    const DayCounter dc = ActualActual(ActualActual::ISDA);
     const Date todaysDate(5, Jan, 2016);
     const Date maturityDate = todaysDate + Period(1, Years);
     Settings::instance().evaluationDate() = todaysDate;
@@ -2580,47 +2580,32 @@ void HestonSLVModelTest::testDiffusionAndDriftSlvProcess() {
 test_suite* HestonSLVModelTest::experimental(SpeedLevel speed) {
     auto* suite = BOOST_TEST_SUITE("Heston Stochastic Local Volatility tests");
 
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testBlackScholesFokkerPlanckFwdEquation));
+    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testBlackScholesFokkerPlanckFwdEquation));
     suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testSquareRootZeroFlowBC));
     suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testTransformedZeroFlowBC));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testSquareRootEvolveWithStationaryDensity));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testSquareRootLogEvolveWithStationaryDensity));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testSquareRootFokkerPlanckFwdEquation));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testHestonFokkerPlanckFwdEquationLogLVLeverage));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testBarrierPricingViaHestonLocalVol));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testMonteCarloVsFdmPricing));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testLocalVolsvSLVPropDensity));
-    suite->add(QUANTLIB_TEST_CASE(
-        &HestonSLVModelTest::testDiffusionAndDriftSlvProcess));
+    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testSquareRootEvolveWithStationaryDensity));
+    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testSquareRootLogEvolveWithStationaryDensity));
+    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testSquareRootFokkerPlanckFwdEquation));
+    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testBarrierPricingViaHestonLocalVol));
+    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testLocalVolsvSLVPropDensity));
+    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testDiffusionAndDriftSlvProcess));
 
     if (speed <= Fast) {
-        suite->add(QUANTLIB_TEST_CASE(
-            &HestonSLVModelTest::testHestonFokkerPlanckFwdEquation));
+        suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testHestonFokkerPlanckFwdEquationLogLVLeverage));
+        suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testMonteCarloVsFdmPricing));
     }
 
     if (speed == Slow) {
-        suite->add(QUANTLIB_TEST_CASE(
-            &HestonSLVModelTest::testMonteCarloCalibration));
-        suite->add(QUANTLIB_TEST_CASE(
-            &HestonSLVModelTest::testBlackScholesFokkerPlanckFwdEquationLocalVol));
-        suite->add(QUANTLIB_TEST_CASE(
-            &HestonSLVModelTest::testMoustacheGraph));
+        suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testHestonFokkerPlanckFwdEquation));
+        suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testMonteCarloCalibration));
+        suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testBlackScholesFokkerPlanckFwdEquationLocalVol));
+        suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testMoustacheGraph));
     }
 
 //    these tests take very long
-//    suite->add(QUANTLIB_TEST_CASE(
-//        &HestonSLVModelTest::testForwardSkewSLV));
+//    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testForwardSkewSLV));
 //    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testFDMCalibration));
-//    suite->add(QUANTLIB_TEST_CASE(
-//        &HestonSLVModelTest::testBarrierPricingMixedModels));
+//    suite->add(QUANTLIB_TEST_CASE(&HestonSLVModelTest::testBarrierPricingMixedModels));
 
     return suite;
 }

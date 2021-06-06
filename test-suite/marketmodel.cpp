@@ -109,7 +109,7 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 #include <ql/models/marketmodels/products/pathwise/pathwiseproductinversefloater.hpp>
 #include <ql/models/marketmodels/products/multistep/multisteppathwisewrapper.hpp>
 
-#include <boost/math/special_functions/fpclassify.hpp>
+#include <cmath>
 #include <sstream>
 
 using namespace QuantLib;
@@ -4613,13 +4613,13 @@ void MarketModelTest::testAbcdDegenerateCases() {
 
     Real cov1 = f1.covariance(0.0,1.0,1.0,1.0);
     if (std::fabs(cov1 - 1.0) > 1E-14
-        || boost::math::isnan(cov1) || boost::math::isinf(cov1))
+        || std::isnan(cov1) || std::isinf(cov1))
         BOOST_FAIL("(a,b,c,d)=(0,0,0,1): true covariance should be 1.0, "
         << "error is " << std::fabs(cov1 - 1.0));
 
     Real cov2 = f2.covariance(0.0,1.0,1.0,1.0);
     if (std::fabs(cov2 - 1.0) > 1E-14
-        || boost::math::isnan(cov2) || boost::math::isinf(cov2))
+        || std::isnan(cov2) || std::isinf(cov2))
         BOOST_FAIL("(a,b,c,d)=(1,0,0,0): true covariance should be 1.0, "
         << "error is " << std::fabs(cov2 - 1.0));
 }
@@ -4723,8 +4723,6 @@ test_suite* MarketModelTest::suite(SpeedLevel speed) {
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testOneStepForwardsAndOptionlets));
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testOneStepNormalForwardsAndOptionlets));
 
-    suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testGreeks));
-
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testAbcdVolatilityIntegration));
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testAbcdVolatilityCompare));
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testAbcdVolatilityFit));
@@ -4738,8 +4736,11 @@ test_suite* MarketModelTest::suite(SpeedLevel speed) {
     suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testCovariance));
 
     if (speed <= Fast) {
+        suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testGreeks));
         suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testPathwiseVegas));
+    }
 
+    if (speed == Slow) {
         using namespace market_model_test;
 
         setup();
@@ -4763,9 +4764,7 @@ test_suite* MarketModelTest::suite(SpeedLevel speed) {
         suite->add(QUANTLIB_TEST_CASE([=](){
             MarketModelTest::testCallableSwapAnderson(ExponentialCorrelationAbcdVolatility, todaysForwards.size());
         }));
-    }
 
-    if (speed == Slow) {
         suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testAllMultiStepProducts));
         suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testCallableSwapNaif));
         suite->add(QUANTLIB_TEST_CASE(&MarketModelTest::testCallableSwapLS));
