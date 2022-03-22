@@ -1,6 +1,7 @@
+/* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2000-2003 StatPro Italia srl
+ Copyright (C) 2022 Marcin Rybacki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -16,20 +17,22 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \page where Where to get QuantLib
+#ifndef quantlib_test_bond_forward_hpp
+#define quantlib_test_bond_forward_hpp
 
-    \section download QuantLib releases
-    Source code, documentation, modules, etc. of current and previous
-    %QuantLib releases can be downloaded from
-    https://www.quantlib.org/download.shtml
+#include <boost/test/unit_test.hpp>
 
-    \section cvs Current snapshot
-    Instructions for Git access are available at
-    https://www.quantlib.org/git.shtml
+/* remember to document new and/or updated tests in the Doxygen
+   comment block of the corresponding class */
 
-    Access to the Git repository is intended mainly for
-    developers and is not recommended to end users which should
-    download the latest stable release instead.
+class BondForwardTest {
+  public:
+    static void testFuturesPriceReplication();
+    static void testCleanForwardPriceReplication();
+    static void testThatForwardValueIsEqualToSpotValueIfNoIncome();
 
-*/
+    static boost::unit_test_framework::test_suite* suite();
+};
 
+
+#endif
